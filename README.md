@@ -62,7 +62,17 @@ HR = pd.read_csv('/Users/dayanamoncada/Desktop/DataVisProject2/HR_comma_sep.csv'
 # Part 3: Visualizations
 *Check the notebook for visualizations*
 
-1. Heatmap - there seems to be heavy positive(+) correlation between projectCount, averageMonthlyHours, and evaluation. Which could mean that the employees who spent more hours and did more projects were evaluated highly. But the feature evaluation, when compared independently with the response variable turnover, shows little to no relationship. What does this mean? For the negative(-) relationships, turnover, satisfaction, and salary are highly correlated. I'm assuming that people tend to leave a company more when they are less satisfied and are lowly paid.
+1. Heatmap - There seems to be heavy positive(+) correlation between projectCount, averageMonthlyHours, and evaluation. Which could mean that the employees who spent more hours and did more projects were evaluated highly. But the feature evaluation, when compared independently with the response variable turnover, shows little to no relationship. What does this mean? For the negative(-) relationships, turnover, satisfaction, and salary are highly correlated. I'm assuming that people tend to leave a company more when they are less satisfied and are lowly paid.
 
-1. 
+1. Department vs Salary - Looks like the top three departments for the company are support, technical, and sales. Most of the departments have similar turnover rates, but management has the lowest. This could mean that people with a higher position tend to not leave.
+
+1. Turnover vs Department - he management department has the highest salary ratio and lowest turnover rate.
+
+1. Turnover vs Years at Company - Summary: Looks like the bulk of the employees worked for about 3-6 years before leaving. Employees that worked for 7-10 years did not have anybody who left.
+
+1. There seems to be a biomodal distrubtion for those that had a turnover. It looks like employees who performed bad or performed well left the company. The sweet spot seems for those that stayed seems to be within 0.6-0.8.
+
+1. Looks like employees who did not have a turnover had consistent averageMonthlyHours, despite the increase in projects. In contrast, employees who did have a turnover had an increase in averageMonthlyHours with the increase in projects.
+
+1. Pie Chart - Demonstrates the project Count vs Evaluation. 
 
