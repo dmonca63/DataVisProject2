@@ -95,18 +95,6 @@ HR = HR.rename(columns={'satisfaction_level': 'Satisfaction',
                         })
 ```
 
-*By printing, the new head of the data, we can see the change in the labels*
-
-```
-HR.head()
-	satisfaction	evaluation	projectCount	averageMonthlyHours	yearsAtCompany	workAccident	turnover	promotion	department	salary
-0	0.38	0.53	2	157	3	0	1	0	sales	low
-1	0.80	0.86	5	262	6	0	1	0	sales	medium
-2	0.11	0.88	7	272	4	0	1	0	sales	medium
-3	0.72	0.87	5	223	5	0	1	0	sales	low
-4	0.37	0.52	2	159	3	0	1	0	sales	low
-```
-
 # Feature conversion 
 
 *Since the 'department' and 'salary' features are categorical, I'm going to convert it into numeric values for better analysis.*
@@ -117,14 +105,8 @@ HR['department'].replace(['sales', 'accounting', 'hr', 'technical', 'support', '
 HR['salary'].replace(['low', 'medium', 'high'], [0, 1, 2], inplace = True)
 
 HR.head()
-
-satisfaction	evaluation	projectCount	averageMonthlyHours	yearsAtCompany	workAccident	turnover	promotion	department	salary
-0	0.38	0.53	2	157	3	0	1	0	0	0
-1	0.80	0.86	5	262	6	0	1	0	0	1
-2	0.11	0.88	7	272	4	0	1	0	0	1
-3	0.72	0.87	5	223	5	0	1	0	0	0
-4	0.37	0.52	2	159	3	0	1	0	0	0
 ```
+
 ```
 # Move the reponse variable "turnover" to the front of the table
 front = HR['turnover']
@@ -132,9 +114,53 @@ HR.drop(labels=['turnover'], axis=1,inplace = True)
 HR.insert(0, 'turnover', front)
 HR.head()
 ```
-![GitHub Logo](/Users/dayanamoncada/Desktop/Project2DataVis/4.png)
 
-Markdown | Less | Pretty
---- | --- | ---
-*Still* | `renders` | **nicely**
-1 | 2 | 3
+# Exploratory data analysis 
+#Statistical overview 
+
+# The dataset contains 10 columns and 14999 observations
+HR.shape
+(14999, 10)
+
+# Feature conversion
+# Feature conversion 
+
+```
+# Convert "department" and "salary" features to numeric types because some functions won't be able to work with string types
+HR['department'].replace(['sales', 'accounting', 'hr', 'technical', 'support', 'management',
+        'IT', 'product_mng', 'marketing', 'RandD'], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], inplace = True)
+HR['salary'].replace(['low', 'medium', 'high'], [0, 1, 2], inplace = True)
+
+HR.head()
+```
+
+```
+# Move the reponse variable "turnover" to the front of the table
+front = HR['turnover']
+HR.drop(labels=['turnover'], axis=1,inplace = True)
+HR.insert(0, 'turnover', front)
+HR.head()
+```
+```
+# Looks like about 76% of employees stayed and 24% of employees left. 
+# NOTE: When performing cross validation, its important to maintain this turnover ratio
+turnover_rate = HR.turnover.value_counts() / 14999
+turnover_rate
+```
+```
+# Overview of summary
+# On average, employees who left had a lower satisfaction level of -20%**, worked 8hours more per month, 
+# had lower salary, and had a lower promotion rate
+turnover_Summary = HR.groupby('turnover')
+turnover_Summary.mean()
+```
+
+```
+# Display the statistical overview of the employees
+HR.describe()
+```
+
+# Part 3: Visualizations
+
+
+
