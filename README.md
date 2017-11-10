@@ -42,126 +42,27 @@ import seaborn as sns
 
 HR = pd.read_csv('/Users/dayanamoncada/Desktop/DataVisProject2/HR_comma_sep.csv')
 ```
+
 # Part 2: Scrubbing the Data 
 
 *Usually, programmers would recommend to a cleaning of the dataset. There's a lot of instances in which there is unnecessary data, gramar errors and so on. This dataset from Kaggle is super clean and contains no missing values. Even though there wasn't data cleaning to do, it is still recommended.*
-
-```
-# Scrubbing the data
-
-# Check to see if there are any missing values in our data set
-HR.isnull().any()
-
-satisfaction_level       False
-last_evaluation          False
-number_project           False
-average_montly_hours     False
-time_spend_company       False
-Work_accident            False
-left                     False
-promotion_last_5years    False
-sales                    False
-salary                   False
-dtype: bool
-```
-
-```
-# Let's take a look at a quick overview of what exactly is in our dataset
-HR.head()
-
-satisfaction_level	last_evaluation	number_project	average_montly_hours	time_spend_company	Work_accident	left	promotion_last_5years	sales	salary
-0	0.38	0.53	2	157	3	0	1	0	sales	low
-1	0.80	0.86	5	262	6	0	1	0	sales	medium
-2	0.11	0.88	7	272	4	0	1	0	sales	medium
-3	0.72	0.87	5	223	5	0	1	0	sales	low
-4	0.37	0.52	2	159	3	0	1	0	sales	low
-```
 
 # Labeling
 
 *Labeling your column names appropriately and periodically is the best way for you to understand the problem as well as making things visually appealing and organized. Furthermore, it helps with the coding part.*
 
-```
-# Renaming certain columns for better readability
-HR = HR.rename(columns={'satisfaction_level': 'Satisfaction', 
-                        'last_evaluation': 'Evaluation',
-                        'number_project': 'NumberCompany',
-                        'average_montly_hours': 'AverageMonthlyHours',
-                        'time_spend_company': 'TimeAtCompany',
-                        'Work_accident': 'WorkAccident',
-                        'promotion_last_5years': 'Promotion',
-                        'sales' : 'Department',
-                        'left' : 'Turnover'
-                        })
-```
-
 # Feature conversion 
 
 *Since the 'department' and 'salary' features are categorical, I'm going to convert it into numeric values for better analysis.*
 
-```# Convert "department" and "salary" features to numeric types because some functions won't be able to work with string types
-HR['department'].replace(['sales', 'accounting', 'hr', 'technical', 'support', 'management',
-        'IT', 'product_mng', 'marketing', 'RandD'], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], inplace = True)
-HR['salary'].replace(['low', 'medium', 'high'], [0, 1, 2], inplace = True)
-
-HR.head()
-```
-
-```
-# Move the reponse variable "turnover" to the front of the table
-front = HR['turnover']
-HR.drop(labels=['turnover'], axis=1,inplace = True)
-HR.insert(0, 'turnover', front)
-HR.head()
-```
-
 # Exploratory data analysis 
 #Statistical overview 
 
-# The dataset contains 10 columns and 14999 observations
-HR.shape
-(14999, 10)
-
-# Feature conversion
-# Feature conversion 
-
-```
-# Convert "department" and "salary" features to numeric types because some functions won't be able to work with string types
-HR['department'].replace(['sales', 'accounting', 'hr', 'technical', 'support', 'management',
-        'IT', 'product_mng', 'marketing', 'RandD'], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], inplace = True)
-HR['salary'].replace(['low', 'medium', 'high'], [0, 1, 2], inplace = True)
-
-HR.head()
-```
-
-```
-# Move the reponse variable "turnover" to the front of the table
-front = HR['turnover']
-HR.drop(labels=['turnover'], axis=1,inplace = True)
-HR.insert(0, 'turnover', front)
-HR.head()
-```
-```
-# Looks like about 76% of employees stayed and 24% of employees left. 
-# NOTE: When performing cross validation, its important to maintain this turnover ratio
-turnover_rate = HR.turnover.value_counts() / 14999
-turnover_rate
-```
-```
-# Overview of summary
-# On average, employees who left had a lower satisfaction level of -20%**, worked 8hours more per month, 
-# had lower salary, and had a lower promotion rate
-turnover_Summary = HR.groupby('turnover')
-turnover_Summary.mean()
-```
-
-```
-# Display the statistical overview of the employees
-HR.describe()
-```
 
 # Part 3: Visualizations
 *Check the notebook for visualizations*
 
+1. Heatmap - there seems to be heavy positive(+) correlation between projectCount, averageMonthlyHours, and evaluation. Which could mean that the employees who spent more hours and did more projects were evaluated highly. But the feature evaluation, when compared independently with the response variable turnover, shows little to no relationship. What does this mean? For the negative(-) relationships, turnover, satisfaction, and salary are highly correlated. I'm assuming that people tend to leave a company more when they are less satisfied and are lowly paid.
 
+1. 
 
