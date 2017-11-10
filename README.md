@@ -161,6 +161,7 @@ HR.describe()
 ```
 
 # Part 3: Visualizations
+*Check the notebook for visualizations*
 
 
 
