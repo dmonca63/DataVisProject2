@@ -46,8 +46,8 @@ HR = pd.read_csv('/Users/dayanamoncada/Desktop/DataVisProject2/HR_comma_sep.csv'
 # Part 2: Scrubbing the Data 
 
 *Usually, programmers would recommend to a cleaning of the dataset. There's a lot of instances in which there is unnecessary data, gramar errors and so on. This dataset from Kaggle is super clean and contains no missing values. Even though there wasn't data cleaning to do, it is still recommended.*
-
-![alt text](https://github.com/dmonca63/DataVisProject2/blob/master/line12.png)
+line12.png
+![alt text](https://github.com/dmonca63/DataVisProject2/blob/master/Line12.png)
 
 # Labeling
 
